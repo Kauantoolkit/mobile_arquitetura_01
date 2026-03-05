@@ -2,19 +2,19 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../errors/failure.dart';
 
-/// HTTP client wrapper that encapsulates network calls.
-/// Uses the http package for making requests.
-/// Throws [Failure] on network errors.
+/// Wrapper do cliente HTTP que encapsula as chamadas de rede.
+/// Usa o pacote http para fazer requisições.
+/// Lança [Failure] em erros de rede.
 class HttpClient {
   final http.Client _client;
 
-  /// Creates an HttpClient with an optional http.Client.
-  /// If no client is provided, a default one is created.
+  /// Cria um HttpClient com um http.Client opcional.
+  /// Se nenhum cliente for fornecido, um padrão é criado.
   HttpClient({http.Client? client}) : _client = client ?? http.Client();
 
-  /// Performs a GET request to the given [url].
-  /// Returns the response body as a dynamic (Map or List).
-  /// Throws [Failure] if the request fails.
+  /// Executa uma requisição GET para a URL informada.
+  /// Retorna o corpo da resposta como dynamic (Map ou List).
+  /// Lança [Failure] se a requisição falhar.
   Future<dynamic> get(String url) async {
     try {
       final response = await _client.get(
@@ -34,8 +34,9 @@ class HttpClient {
     }
   }
 
-  /// Closes the HTTP client and releases resources.
+  /// Fecha o cliente HTTP e libera recursos.
   void dispose() {
     _client.close();
   }
 }
+

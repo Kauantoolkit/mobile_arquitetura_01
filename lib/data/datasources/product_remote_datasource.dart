@@ -1,19 +1,19 @@
 import '../../core/network/http_client.dart';
 import '../models/product_model.dart';
 
-/// Remote data source for fetching products from the FakeStore API.
+/// Fonte de dados remota para buscar produtos da API FakeStore.
 class ProductRemoteDatasource {
   final HttpClient _httpClient;
 
-  /// Base URL for the FakeStore API.
+  /// URL base para a API FakeStore.
   static const String _baseUrl = 'https://fakestoreapi.com';
 
-  /// Creates a ProductRemoteDatasource with the given HttpClient.
+  /// Cria um ProductRemoteDatasource com o HttpClient informado.
   ProductRemoteDatasource({required HttpClient httpClient})
     : _httpClient = httpClient;
 
-  /// Fetches all products from the remote API.
-  /// Returns a list of [ProductModel].
+  /// Busca todos os produtos da API remota.
+  /// Retorna uma lista de [ProductModel].
   Future<List<ProductModel>> getProducts() async {
     final response = await _httpClient.get('$_baseUrl/products');
 
@@ -26,3 +26,4 @@ class ProductRemoteDatasource {
     }
   }
 }
+

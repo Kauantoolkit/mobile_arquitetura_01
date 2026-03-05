@@ -1,19 +1,19 @@
-/// Immutable entity representing a product.
-/// This is the core domain object used throughout the application.
+/// Entidade imutável representando um produto.
+/// Este é o objeto central de domínio usado em toda a aplicação.
 class Product {
-  /// Unique identifier for the product.
+  /// Identificador único do produto.
   final int id;
 
-  /// Title or name of the product.
+  /// Título ou nome do produto.
   final String title;
 
-  /// Price of the product.
+  /// Preço do produto.
   final double price;
 
-  /// URL string for the product image.
+  /// String da URL da imagem do produto.
   final String image;
 
-  /// Creates an immutable Product with the given properties.
+  /// Cria um Product imutável com as propriedades informadas.
   const Product({
     required this.id,
     required this.title,
@@ -38,3 +38,4 @@ class Product {
   String toString() =>
       'Product(id: $id, title: $title, price: $price, image: $image)';
 }
+

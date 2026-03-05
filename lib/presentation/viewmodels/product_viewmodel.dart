@@ -3,43 +3,43 @@ import '../../core/errors/failure.dart';
 import '../../domain/repositories/product_repository.dart';
 import 'product_state.dart';
 
-/// ViewModel that manages product loading state and business logic.
-/// Uses ValueNotifier to notify listeners of state changes.
+/// ViewModel que gerencia o estado de carregamento de produtos e lógica de negócio.
+/// Usa ValueNotifier para notificar ouvintes sobre mudanças de estado.
 class ProductViewModel {
   final ProductRepository _repository;
 
-  /// StateNotifier that holds the current product state.
+  /// StateNotifier que mantém o estado atual do produto.
   final ValueNotifier<ProductState> _state = ValueNotifier(
     const ProductState(),
   );
 
-  /// Public getter for the state to be used with ValueListenableBuilder.
+  /// Getter público para o estado a ser usado com ValueListenableBuilder.
   ValueNotifier<ProductState> get state => _state;
 
-  /// Creates a ProductViewModel with the given repository.
+  /// Cria um ProductViewModel com o repositório informado.
   ProductViewModel({required ProductRepository repository})
     : _repository = repository;
 
-  /// Loads products from the repository.
-  /// Updates state to loading, then success or error accordingly.
+  /// Carrega produtos do repositório.
+  /// Atualiza o estado para carregando, então sucesso ou erro conforme o resultado.
   Future<void> loadProducts() async {
-    // Set loading state
+    // Define estado de carregamento
     _state.value = _state.value.copyWith(isLoading: true, error: null);
 
     try {
       final products = await _repository.getProducts();
 
-      // Set success state with products
+      // Define estado de sucesso com produtos
       _state.value = _state.value.copyWith(
         isLoading: false,
         products: products,
         error: null,
       );
     } on Failure catch (e) {
-      // Set error state with failure message
+      // Define estado de erro com mensagem de falha
       _state.value = _state.value.copyWith(isLoading: false, error: e.message);
     } catch (e) {
-      // Set error state with generic message
+      // Define estado de erro com mensagem genérica
       _state.value = _state.value.copyWith(
         isLoading: false,
         error: 'Não foi possível carregar os produtos',
@@ -47,8 +47,9 @@ class ProductViewModel {
     }
   }
 
-  /// Disposes of the ViewModel and releases resources.
+  /// Libera o ViewModel e seus recursos.
   void dispose() {
     _state.dispose();
   }
 }
+

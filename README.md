@@ -1,104 +1,104 @@
 # mobile_arquitetura_01
 
-A Flutter project demonstrating clean architecture with data, domain, and presentation layers. Consumes the FakeStore API (https://fakestoreapi.com/products).
+Um projeto Flutter demonstrando clean architecture com camadas de dados, domínio e apresentação. Consome a API FakeStore (https://fakestoreapi.com/products).
 
-## Architecture
+## Arquitetura
 
-This project follows Clean Architecture principles with the following layers:
+Este projeto segue os princípios de Clean Architecture com as seguintes camadas:
 
 ```
 lib/
   core/
     errors/
-      failure.dart          # Exception class for failures
+      failure.dart          # Classe de exceção para falhas
     network/
-      http_client.dart     # HTTP client wrapper using http package
+      http_client.dart     # Wrapper do cliente HTTP usando o pacote http
   domain/
     entities/
-      product.dart         # Product entity (immutable)
+      product.dart         # Entidade Product (imutável)
     repositories/
-      product_repository.dart  # Abstract repository interface
+      product_repository.dart  # Interface abstrata do repositório
   data/
     models/
-      product_model.dart   # ProductModel with JSON serialization
+      product_model.dart   # ProductModel com serialização JSON
     datasources/
-      product_remote_datasource.dart   # Remote API data source
-      product_cache_datasource.dart    # In-memory cache data source
+      product_remote_datasource.dart   # Fonte de dados da API remota
+      product_cache_datasource.dart    # Fonte de dados de cache em memória
     repositories/
-      product_repository_impl.dart     # Repository implementation
+      product_repository_impl.dart     # Implementação do repositório
   presentation/
     viewmodels/
-      product_state.dart    # State class for products
-      product_viewmodel.dart # ViewModel managing product state
+      product_state.dart    # Classe de estado para produtos
+      product_viewmodel.dart # ViewModel gerenciando o estado dos produtos
     pages/
-      product_page.dart     # Main page displaying products
+      product_page.dart     # Página principal exibindo produtos
     widgets/
-      product_tile.dart    # Reusable product card widget
-  main.dart                 # App entry point with DI setup
+      product_tile.dart    # Widget de cartão de produto reutilizável
+  main.dart                 # Ponto de entrada do app com configuração de DI
 ```
 
-## HTTP Package Used
+## Pacote HTTP Utilizado
 
-This project uses the **http** package (version 1.6.0) for making network requests. It's a simple, lightweight HTTP client for Dart/Flutter.
+Este projeto usa o pacote **http** (versão 1.6.0) para fazer requisições de rede. É um cliente HTTP simples e leve para Dart/Flutter.
 
-## How to Run
+## Como Executar
 
-1. **Install dependencies:**
+1. **Instalar dependências:**
    ```bash
    flutter pub get
    ```
 
-2. **Run the app:**
+2. **Executar o app:**
    ```bash
    flutter run
    ```
 
-3. **Build for Android:**
+3. **Build para Android:**
    ```bash
    flutter build apk
    ```
 
-4. **Build for iOS:**
+4. **Build para iOS:**
    ```bash
    flutter build ios
    ```
 
-## How to Test Network Failure
+## Como Testar Falha de Rede
 
-To test the error handling and caching behavior:
+Para testar o tratamento de erros e comportamento de cache:
 
-1. **Test with no internet:**
-   - Disconnect your device/computer from the network
-   - Tap the refresh button (FAB)
-   - If products were loaded before, they'll appear from cache
-   - If no products were loaded before, you'll see an error message
+1. **Testar sem internet:**
+   - Desconecte seu dispositivo/computador da rede
+   - Toque no botão de atualizar (FAB)
+   - Se os produtos foram carregados antes, aparecerão do cache
+   - Se nenhum produto foi carregado antes, você verá uma mensagem de erro
 
-2. **Simulate network failure in code:**
-   - You can modify the `ProductRemoteDatasource` to throw an exception
-   - Or temporarily change the API URL to an invalid endpoint
+2. **Simular falha de rede no código:**
+   - Você pode modificar o `ProductRemoteDatasource` para lançar uma exceção
+   - Ou alterar temporariamente a URL da API para um endpoint inválido
 
-## Error Handling
+## Tratamento de Erros
 
-- **Network errors:** Display "Não foi possível carregar os produtos" message
-- **Cache fallback:** If network fails but cache exists, displays cached products
-- **Empty state:** Shows appropriate message when no products available
+- **Erros de rede:** Exibe a mensagem "Não foi possível carregar os produtos"
+- **Fallback de cache:** Se a rede falhar mas existir cache, exibe os produtos em cache
+- **Estado vazio:** Exibe mensagem apropriada quando não houver produtos disponíveis
 
-## Features
+## Funcionalidades
 
-- ✅ Clean Architecture (data, domain, presentation layers)
-- ✅ Consumes https://fakestoreapi.com/products
-- ✅ In-memory caching for offline support
-- ✅ Error handling with user-friendly messages
-- ✅ Pull-to-refresh via FAB button
-- ✅ Null safety
-- ✅ Material Design 3
+- Clean Architecture (camadas de dados, domínio e apresentação)
+- Consome https://fakestoreapi.com/products
+- Cache em memória para suporte offline
+- Tratamento de erros com mensagens amigáveis
+- Pull-to-refresh via botão FAB
+- Null safety
+- Material Design 3
 
 ## Commits
 
-- `init: flutter project mobile_arquitetura_01` - Initial Flutter project setup
-- Additional commits for each layer implementation
+- `init: flutter project mobile_arquitetura_01` - Configuração inicial do projeto Flutter
+- Commits adicionais para implementação de cada camada
 
-## Version
+## Versão
 
 v1.0.0
 

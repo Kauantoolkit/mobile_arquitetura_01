@@ -11,35 +11,35 @@ void main() {
   runApp(const MyApp());
 }
 
-/// Main application widget that sets up dependency injection.
+/// Widget principal da aplicação que configura a injeção de dependência.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Set up dependency injection (manual DI)
+    // Configura injeção de dependência (DI manual)
 
-    // 1. Create HttpClient
+    // 1. Cria o HttpClient
     final httpClient = HttpClient();
 
-    // 2. Create datasources
+    // 2. Cria as fontes de dados
     final remoteDatasource = ProductRemoteDatasource(httpClient: httpClient);
     final cacheDatasource = ProductCacheDatasource();
 
-    // 3. Create repository
+    // 3. Cria o repositório
     final repository = ProductRepositoryImpl(
       remoteDatasource: remoteDatasource,
       cacheDatasource: cacheDatasource,
     );
 
-    // 4. Create ViewModel
+    // 4. Cria o ViewModel
     final viewModel = ProductViewModel(repository: repository);
 
-    // 5. Load products on startup
+    // 5. Carrega produtos ao iniciar
     viewModel.loadProducts();
 
     return MaterialApp(
-      title: 'Products App',
+      title: 'App de Produtos',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -49,3 +49,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+

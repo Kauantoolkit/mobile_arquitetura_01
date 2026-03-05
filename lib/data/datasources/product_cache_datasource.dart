@@ -1,24 +1,25 @@
 import '../models/product_model.dart';
 
-/// In-memory cache data source for products.
-/// Provides simple caching functionality to reduce network calls.
+/// Fonte de dados de cache em memória para produtos.
+/// Fornece funcionalidade simples de cache para reduzir chamadas de rede.
 class ProductCacheDatasource {
-  /// Internal storage for cached products.
+  /// Armazenamento interno para produtos em cache.
   List<ProductModel>? _cachedProducts;
 
-  /// Saves the list of products to the cache.
+  /// Salva a lista de produtos no cache.
   void save(List<ProductModel> products) {
     _cachedProducts = products;
   }
 
-  /// Retrieves the cached products.
-  /// Returns null if no products are cached.
+  /// Recupera os produtos em cache.
+  /// Retorna null se nenhum produto estiver em cache.
   List<ProductModel>? get() {
     return _cachedProducts;
   }
 
-  /// Clears the cache.
+  /// Limpa o cache.
   void clear() {
     _cachedProducts = null;
   }
 }
+

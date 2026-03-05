@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/product.dart';
 
-/// Reusable widget that displays a single product in a tile layout.
-/// Shows the product image, title, and formatted price.
+/// Widget reutilizável que exibe um único produto em um layout de tile.
+/// Exibe a imagem, título e preço formatado do produto.
 class ProductTile extends StatelessWidget {
-  /// The product to display.
+  /// O produto a ser exibido.
   final Product product;
 
-  /// Creates a ProductTile with the given product.
+  /// Cria um ProductTile com o produto informado.
   const ProductTile({super.key, required this.product});
 
   @override
@@ -20,7 +20,7 @@ class ProductTile extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Product image with fixed size
+            // Imagem do produto com tamanho fixo
             SizedBox(
               width: 80,
               height: 80,
@@ -46,7 +46,7 @@ class ProductTile extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            // Product details
+            // Detalhes do produto
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,3 +76,4 @@ class ProductTile extends StatelessWidget {
     );
   }
 }
+

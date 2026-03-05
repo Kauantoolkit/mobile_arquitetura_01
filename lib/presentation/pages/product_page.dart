@@ -2,31 +2,31 @@ import 'package:flutter/material.dart';
 import '../viewmodels/product_viewmodel.dart';
 import '../widgets/product_tile.dart';
 
-/// Main page that displays the list of products.
-/// Uses ValueListenableBuilder to observe ViewModel state changes.
+/// Página principal que exibe a lista de produtos.
+/// Usa ValueListenableBuilder para observar mudanças de estado do ViewModel.
 class ProductPage extends StatelessWidget {
-  /// The ViewModel that manages product state.
+  /// O ViewModel que gerencia o estado do produto.
   final ProductViewModel viewModel;
 
-  /// Creates a ProductPage with the given ViewModel.
+  /// Cria uma ProductPage com o ViewModel informado.
   const ProductPage({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Products'),
+        title: const Text('Produtos'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ValueListenableBuilder(
         valueListenable: viewModel.state,
         builder: (context, state, child) {
-          // Show loading indicator
+          // Exibe indicador de carregamento
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          // Show error message
+          // Exibe mensagem de erro
           if (state.error != null) {
             return Center(
               child: Padding(
@@ -53,7 +53,7 @@ class ProductPage extends StatelessWidget {
             );
           }
 
-          // Show product list
+          // Exibe lista de produtos
           if (state.products.isEmpty) {
             return Center(
               child: Column(
@@ -80,7 +80,7 @@ class ProductPage extends StatelessWidget {
             );
           }
 
-          // Build the list of products
+          // Constrói a lista de produtos
           return ListView.builder(
             itemCount: state.products.length,
             itemBuilder: (context, index) {
@@ -97,3 +97,4 @@ class ProductPage extends StatelessWidget {
     );
   }
 }
+

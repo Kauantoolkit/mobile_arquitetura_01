@@ -1,10 +1,11 @@
 import '../entities/product.dart';
 
-/// Abstract repository interface for product data operations.
-/// Defines the contract for fetching products from data sources.
+/// Interface abstrata do repositório para operações de dados de produtos.
+/// Define o contrato para buscar produtos das fontes de dados.
 abstract class ProductRepository {
-  /// Fetches the list of all products.
-  /// Returns a list of [Product] entities.
-  /// Throws [Failure] if the operation fails.
+  /// Busca a lista de todos os produtos.
+  /// Retorna uma lista de entidades [Product].
+  /// Lança [Failure] se a operação falhar.
   Future<List<Product>> getProducts();
 }
+

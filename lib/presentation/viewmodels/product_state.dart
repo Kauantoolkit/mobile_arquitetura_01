@@ -1,25 +1,25 @@
 import '../../domain/entities/product.dart';
 
-/// State class representing the current state of product loading.
+/// Classe de estado representando o estado atual do carregamento de produtos.
 class ProductState {
-  /// Whether products are currently being loaded.
+  /// Se os produtos estão sendo carregados atualmente.
   final bool isLoading;
 
-  /// List of loaded products.
+  /// Lista de produtos carregados.
   final List<Product> products;
 
-  /// Error message if loading failed, null otherwise.
+  /// Mensagem de erro se o carregamento falhou, null caso contrário.
   final String? error;
 
-  /// Creates a ProductState with the given properties.
-  /// Default values are provided for all fields.
+  /// Cria um ProductState com as propriedades informadas.
+  /// Valores padrão são fornecidos para todos os campos.
   const ProductState({
     this.isLoading = false,
     this.products = const [],
     this.error,
   });
 
-  /// Creates a copy of this state with the given fields replaced.
+  /// Cria uma cópia deste estado com os campos informados substituídos.
   ProductState copyWith({
     bool? isLoading,
     List<Product>? products,
@@ -32,3 +32,4 @@ class ProductState {
     );
   }
 }
+

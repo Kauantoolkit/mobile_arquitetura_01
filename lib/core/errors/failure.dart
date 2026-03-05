@@ -1,12 +1,13 @@
-/// Exception class that represents failures in the application.
-/// Used to wrap errors from data layer and propagate them to presentation.
+/// Classe de exceção que representa falhas na aplicação.
+/// Usada para envolver erros da camada de dados e propagá-los para a apresentação.
 class Failure implements Exception {
-  /// The error message describing what went wrong.
+  /// A mensagem de erro descrevendo o que deu errado.
   final String message;
 
-  /// Creates a Failure with the given message.
+  /// Cria um Failure com a mensagem informada.
   const Failure(this.message);
 
   @override
   String toString() => 'Failure: $message';
 }
+
