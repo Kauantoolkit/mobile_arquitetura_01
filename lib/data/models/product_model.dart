@@ -12,12 +12,54 @@ class ProductModel extends Product {
   });
 
   /// Cria um [ProductModel] a partir de um mapa JSON.
+  /// Lança [FormatException] caso o JSON seja inválido ou ausente campos obrigatórios.
   factory ProductModel.fromJson(Map<String, dynamic> json) {
+    // Valida se o JSON não é nulo
+    if (json == null) {
+      throw const FormatException('JSON cannot be null');
+    }
+
+    // Valida e obtém o campo 'id'
+    final id = json['id'];
+    if (id == null) {
+      throw const FormatException('Field "id" is required');
+    }
+    if (id is! int) {
+      throw FormatException('Field "id" must be an integer, got: ${id.runtimeType}');
+    }
+
+    // Valida e obtém o campo 'title'
+    final title = json['title'];
+    if (title == null) {
+      throw const FormatException('Field "title" is required');
+    }
+    if (title is! String) {
+      throw FormatException('Field "title" must be a string, got: ${title.runtimeType}');
+    }
+
+    // Valida e obtém o campo 'price'
+    final price = json['price'];
+    if (price == null) {
+      throw const FormatException('Field "price" is required');
+    }
+    if (price is! num) {
+      throw FormatException('Field "price" must be a number, got: ${price.runtimeType}');
+    }
+
+    // Valida e obtém o campo 'image'
+    final image = json['image'];
+    if (image == null) {
+      throw const FormatException('Field "image" is required');
+    }
+    if (image is! String) {
+      throw FormatException('Field "image" must be a string, got: ${image.runtimeType}');
+    }
+
     return ProductModel(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      price: (json['price'] as num).toDouble(),
-      image: json['image'] as String,
+      id: id,
+      title: title,
+      price: price.toDouble(),
+      image: image,
     );
   }
 
