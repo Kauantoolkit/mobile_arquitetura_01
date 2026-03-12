@@ -15,9 +15,6 @@ class ProductModel extends Product {
   /// Lança [FormatException] caso o JSON seja inválido ou ausente campos obrigatórios.
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     // Valida se o JSON não é nulo
-    if (json == null) {
-      throw const FormatException('JSON cannot be null');
-    }
 
     // Valida e obtém o campo 'id'
     final id = json['id'];
@@ -25,7 +22,9 @@ class ProductModel extends Product {
       throw const FormatException('Field "id" is required');
     }
     if (id is! int) {
-      throw FormatException('Field "id" must be an integer, got: ${id.runtimeType}');
+      throw FormatException(
+        'Field "id" must be an integer, got: ${id.runtimeType}',
+      );
     }
 
     // Valida e obtém o campo 'title'
@@ -34,7 +33,9 @@ class ProductModel extends Product {
       throw const FormatException('Field "title" is required');
     }
     if (title is! String) {
-      throw FormatException('Field "title" must be a string, got: ${title.runtimeType}');
+      throw FormatException(
+        'Field "title" must be a string, got: ${title.runtimeType}',
+      );
     }
 
     // Valida e obtém o campo 'price'
@@ -43,7 +44,9 @@ class ProductModel extends Product {
       throw const FormatException('Field "price" is required');
     }
     if (price is! num) {
-      throw FormatException('Field "price" must be a number, got: ${price.runtimeType}');
+      throw FormatException(
+        'Field "price" must be a number, got: ${price.runtimeType}',
+      );
     }
 
     // Valida e obtém o campo 'image'
@@ -52,7 +55,9 @@ class ProductModel extends Product {
       throw const FormatException('Field "image" is required');
     }
     if (image is! String) {
-      throw FormatException('Field "image" must be a string, got: ${image.runtimeType}');
+      throw FormatException(
+        'Field "image" must be a string, got: ${image.runtimeType}',
+      );
     }
 
     return ProductModel(
@@ -83,4 +88,3 @@ class ProductModel extends Product {
     return Product(id: id, title: title, price: price, image: image);
   }
 }
-

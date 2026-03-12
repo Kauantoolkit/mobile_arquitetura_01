@@ -4,7 +4,6 @@ import 'package:mobile_arquitetura_01/core/errors/failure.dart';
 import 'package:mobile_arquitetura_01/domain/entities/product.dart';
 import 'package:mobile_arquitetura_01/domain/repositories/product_repository.dart';
 import 'package:mobile_arquitetura_01/presentation/viewmodels/product_viewmodel.dart';
-import 'package:mobile_arquitetura_01/presentation/viewmodels/product_state.dart';
 
 // Mock class for ProductRepository
 class MockProductRepository extends Mock implements ProductRepository {}
@@ -24,8 +23,18 @@ void main() {
 
   group('ProductViewModel', () {
     final testProducts = [
-      const Product(id: 1, title: 'Product 1', price: 10.0, image: 'http://example.com/1.jpg'),
-      const Product(id: 2, title: 'Product 2', price: 20.0, image: 'http://example.com/2.jpg'),
+      const Product(
+        id: 1,
+        title: 'Product 1',
+        price: 10.0,
+        image: 'http://example.com/1.jpg',
+      ),
+      const Product(
+        id: 2,
+        title: 'Product 2',
+        price: 20.0,
+        image: 'http://example.com/2.jpg',
+      ),
     ];
 
     test('Initial state should have isLoading as false and empty products', () {
@@ -37,9 +46,9 @@ void main() {
 
     test('loadProducts should update state to loading', () async {
       // Arrange
-      when(() => mockRepository.getProducts()).thenAnswer(
-        (_) async => testProducts,
-      );
+      when(
+        () => mockRepository.getProducts(),
+      ).thenAnswer((_) async => testProducts);
 
       // Act
       final future = viewModel.loadProducts();
@@ -53,9 +62,9 @@ void main() {
 
     test('loadProducts should return products on success', () async {
       // Arrange
-      when(() => mockRepository.getProducts()).thenAnswer(
-        (_) async => testProducts,
-      );
+      when(
+        () => mockRepository.getProducts(),
+      ).thenAnswer((_) async => testProducts);
 
       // Act
       await viewModel.loadProducts();
@@ -69,9 +78,9 @@ void main() {
 
     test('loadProducts should handle Failure and update error state', () async {
       // Arrange
-      when(() => mockRepository.getProducts()).thenThrow(
-        const Failure('Network error'),
-      );
+      when(
+        () => mockRepository.getProducts(),
+      ).thenThrow(const Failure('Network error'));
 
       // Act
       await viewModel.loadProducts();
@@ -82,20 +91,26 @@ void main() {
       expect(viewModel.state.value.error, 'Network error');
     });
 
-    test('loadProducts should handle generic exception and update error state', () async {
-      // Arrange
-      when(() => mockRepository.getProducts()).thenThrow(
-        Exception('Unexpected error'),
-      );
+    test(
+      'loadProducts should handle generic exception and update error state',
+      () async {
+        // Arrange
+        when(
+          () => mockRepository.getProducts(),
+        ).thenThrow(Exception('Unexpected error'));
 
-      // Act
-      await viewModel.loadProducts();
+        // Act
+        await viewModel.loadProducts();
 
-      // Assert
-      expect(viewModel.state.value.isLoading, false);
-      expect(viewModel.state.value.products, isEmpty);
-      expect(viewModel.state.value.error, 'Não foi possível carregar os produtos');
-    });
+        // Assert
+        expect(viewModel.state.value.isLoading, false);
+        expect(viewModel.state.value.products, isEmpty);
+        expect(
+          viewModel.state.value.error,
+          'Não foi possível carregar os produtos',
+        );
+      },
+    );
 
     test('loadProducts should notify listeners on state change', () async {
       // Arrange
@@ -104,9 +119,9 @@ void main() {
         notificationCount++;
       });
 
-      when(() => mockRepository.getProducts()).thenAnswer(
-        (_) async => testProducts,
-      );
+      when(
+        () => mockRepository.getProducts(),
+      ).thenAnswer((_) async => testProducts);
 
       // Act
       await viewModel.loadProducts();
@@ -116,4 +131,3 @@ void main() {
     });
   });
 }
-

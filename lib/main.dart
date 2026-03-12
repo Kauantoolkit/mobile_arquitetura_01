@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'core/errors/failure.dart';
 import 'core/network/http_client.dart';
 import 'data/datasources/product_remote_datasource.dart';
 import 'data/datasources/product_cache_datasource.dart';
@@ -50,4 +49,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
